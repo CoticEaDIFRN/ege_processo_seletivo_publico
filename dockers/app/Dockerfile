@@ -10,10 +10,12 @@ RUN apk update && \
 
 RUN addgroup -g 1000 app && adduser -D -H -s none -u 1000 -G app app
 
+ADD startup.sh . 
+
 ADD requirements-build.txt . 
 RUN pip install -r requirements-build.txt
 
 WORKDIR /apps/app
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD /startup.sh
 
