@@ -10,7 +10,7 @@ services:
     volumes:
       - "../volumes/pgdata:/var/lib/postgresql/data"
   app:
-    image: 'app'
+    image: 'kelsoncm/django_psycopg2:1.0'
     build:
       context: ../dockers/app
     ports:
