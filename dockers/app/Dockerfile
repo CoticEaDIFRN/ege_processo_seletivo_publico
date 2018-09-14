@@ -1,8 +1,19 @@
-FROM python:3.6
+FROM python:3.7-alpine
+
 ENV PYTHONUNBUFFERED 1
-ADD requirements.txt . 
-RUN pip install -r requirements.txt
-RUN mkdir /app
-WORKDIR /app
+
+RUN apk update && \
+    apk add postgresql-libs && \
+    apk add --virtual .build-deps gcc python3-dev musl-dev postgresql-dev && \
+    pip install psycopg2-binary && \
+    apk --purge del .build-deps gcc python3-dev musl-dev postgresql-dev
+
+RUN addgroup -g 1000 app && adduser -D -H -s none -u 1000 -G app app
+
+ADD requirements-build.txt . 
+RUN pip install -r requirements-build.txt
+
+WORKDIR /apps/app
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+
