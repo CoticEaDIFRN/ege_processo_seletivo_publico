@@ -9,7 +9,7 @@ services:
       - "${POSTGRES_EXTERNAL_PORT}:5432"
     volumes:
       - "../volumes/pgdata:/var/lib/postgresql/data"
-  app:
+  bolsistas:
     image: 'kelsoncm/django_psycopg2:1.0'
     build:
       context: ../dockers/app
