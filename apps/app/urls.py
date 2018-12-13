@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 from django.urls import path, include
 from django.conf import settings
+#from cadastroEdital.apps import edital,listagem
 
 
 def redirect(to):
@@ -32,6 +33,9 @@ urlpatterns = [
             [
                 path('admin/', admin.site.urls),
                 path('', redirect("admin")),
+                #path('edital/', redirect(edital)),
+                #path('listagem/', redirect(listagem))
+
             ]
         )
     ),
