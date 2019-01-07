@@ -69,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'ege_perfil.context_processors.ege',
+                # 'ege_perfil.context_processors.ege',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': env('POSTGRES_ENGINE', 'django.db.backends.postgresql_psycopg2'),
         'HOST': env('POSTGRES_HOST', 'db'),
         'PORT': env('POSTGRES_PORT', '5432'),
-        'NAME': env('POSTGRES_DB_PERFIL', 'ege_perfil'),
+        'NAME': env('POSTGRES_DB_SELECAO', 'ege_selecao'),
         'USER': env('POSTGRES_USER', 'postgres'),
         'PASSWORD': env('POSTGRES_PASSWORD', 'postgres'),
     }
@@ -92,10 +92,10 @@ DATABASES = {
 
 # Routing
 WSGI_APPLICATION = env('DJANGO_WSGI_APPLICATION', 'wsgi.application')
+URL_PATH_PREFIX = env('URL_PATH_PREFIX', 'selecao/')
 ALLOWED_HOSTS = env_as_list('DJANGO_ALLOWED_HOSTS', '*' if DEBUG else '')
 USE_X_FORWARDED_HOST = True
 ROOT_URLCONF = env('DJANGO_ROOT_URLCONF', 'urls')
-URL_PATH_PREFIX = env('URL_PATH_PREFIX', 'ege/selecao/')
 STATIC_URL = env('DJANGO_STATIC_URL', "/%s%s" % (URL_PATH_PREFIX, 'static/'))
 STATIC_ROOT = "/static"
 
@@ -110,10 +110,10 @@ USE_TZ = env_as_bool('DJANGO_USE_TZ', True)
 
 # Auth and Security... some another points impact on security, take care!
 SECRET_KEY = env('DJANGO_SECRET_KEY', 'changeme')
-LOGIN_URL = env("DJANGO_LOGIN_URL", 'http://localhost/ege/selecao/jwt/login')
-LOGOUT_URL = env("DJANGO_LOGOUT_URL", 'http://localhost/ege/selecao/logout/')
-LOGIN_REDIRECT_URL = env("DJANGO_LOGIN_REDIRECT_URL", 'http://localhost/ege/selecao/')
-LOGOUT_REDIRECT_URL = env("DJANGO_LOGOUT_REDIRECT_URL", 'http://localhost/ege/selecao/')
+LOGIN_URL = env("DJANGO_LOGIN_URL", 'http://localhost/selecao/jwt/login')
+LOGOUT_URL = env("DJANGO_LOGOUT_URL", 'http://localhost/selecao/logout/')
+LOGIN_REDIRECT_URL = env("DJANGO_LOGIN_REDIRECT_URL", 'http://localhost/selecao/i/')
+LOGOUT_REDIRECT_URL = env("DJANGO_LOGOUT_REDIRECT_URL", 'http://localhost/selecao/i/')
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 EGE_ACESSO_JWT_AUTHORIZE = env("EGE_ACESSO_JWT_AUTHORIZE", 'http://localhost/ege/acesso/jwt/authorize/')
 EGE_ACESSO_JWT_VALIDATE = env("EGE_ACESSO_JWT_VALIDATE", 'http://acesso:8000/ege/acesso/jwt/validate/')
