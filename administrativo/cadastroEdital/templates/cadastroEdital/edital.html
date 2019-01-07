@@ -7,13 +7,36 @@
 <body>
 
 
+
 {% block content %}
     <h1>Novo Edital</h1>
-    <form method="POST" class="novo-edital">{% csrf_token %}
-        {{ form.as_p }}
+    <form method="POST" class="novo-edital">
+         {% csrf_token %}
+         {{ form1.as_p }}
+
+        <h2>Pagamento</h2>
+
+        {% csrf_token %}
+        {{ form2.as_p }}
+
+    <form action="" method="post">
+        <h2>Vaga</h2>
+        {% csrf_token %}
+        {{ form3.as_p }}
+        <input type="submit" class="btn btn-info" value="Adicionar">
+    </form>
+    <p></p>
+    <form action="" method="post">
+        <h2>Coordenador</h2>
+        {% csrf_token %}
+        {{ form4.as_p }}
+        <input type="submit" class="btn btn-info" value="Adicionar">
+    </form>
+    <p></p>
         <button type="submit" class="save btn btn-default">Salvar</button>
     </form>
 {% endblock %}
+
 
 </body>
 </html>
