@@ -92,7 +92,7 @@ DATABASES = {
 
 # Routing
 WSGI_APPLICATION = env('DJANGO_WSGI_APPLICATION', 'wsgi.application')
-URL_PATH_PREFIX = env('URL_PATH_PREFIX', 'selecao/')
+URL_PATH_PREFIX = env('URL_PATH_PREFIX', 'ege/selecao/')
 ALLOWED_HOSTS = env_as_list('DJANGO_ALLOWED_HOSTS', '*' if DEBUG else '')
 USE_X_FORWARDED_HOST = True
 ROOT_URLCONF = env('DJANGO_ROOT_URLCONF', 'urls')

@@ -1,10 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from django.contrib import admin
 
-from . import views
+from inscricao import views
 
 app_name = 'ege_selecao'
 urlpatterns = [
-    # path('', views.novoEdital, name='novoEdital'),
-    # path('i/', views.list_Edital, name='list_Edital'),
-    # path('v/', views.list_vaga, name='list_Vaga')
+    path('', views.nova_inscricao, name='nova_inscricao'),
+    # path('api/v1/', include(router.urls)),
+    path('admin/', admin.site.urls)
 ]
