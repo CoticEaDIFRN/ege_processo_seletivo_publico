@@ -8,17 +8,13 @@ class CandidatoForm(forms.ModelForm):
         fields = '__all__'
 
 
-# class PagamentoForm(forms.ModelForm):
-#     class Meta:
-#         model = Pagamento
-#         fields = ['existe_taxa', 'valor_taxa', 'vencimento_boleto']
-#
+class PagamentoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = ['municipio', 'pais_nascimento', 'cep', 'endereco', 'complemento', 'uf', 'cidade']
+
 # class VagaForm(forms.ModelForm):
 #     class Meta:
-#         model = Vaga
+#         model = Inscricao
 #         fields = '__all__'
-#
-# class CoordenadorForm(forms.ModelForm):
-#     class Meta:
-#         model = Coordenador
-#         fields = '__all__'
+
