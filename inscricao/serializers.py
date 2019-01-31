@@ -1,3 +1,4 @@
+#fields = ['municipio', 'pais_nascimento', 'cep', 'endereco', 'complemento', 'uf', 'cidade']
 """
 The MIT License (MIT)
 
@@ -30,4 +31,4 @@ class CandidatiSerializer(ModelSerializer):
 class EnderecoSerializer(ModelSerializer):
     class Meta:
         model = Endereco
-        fields = ['municipio', 'pais_nascimento', 'cep', 'endereco', 'complemento', 'uf', 'cidade']
+        fields = '__all__'

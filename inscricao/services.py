@@ -23,7 +23,7 @@ from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from .models import Candidato,Endereco
+from .models import Candidato, Endereco
 from .serializers import CandidatiSerializer, EnderecoSerializer
 
 

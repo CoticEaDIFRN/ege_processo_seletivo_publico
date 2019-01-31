@@ -11,6 +11,6 @@ router.register('candidato', CandidatoService)
 app_name = 'ege_selecao'
 urlpatterns = [
     path('', views.nova_inscricao, name='nova_inscricao'),
-    path('api/v1/', include(router.urls)),
+    path('api/v2/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
