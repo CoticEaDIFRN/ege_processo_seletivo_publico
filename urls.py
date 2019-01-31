@@ -26,6 +26,7 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from ege_auth_jwt.views import jwt_logout
+for ege_seletivo.view import 
 
 urlpatterns = [
     path(
@@ -34,7 +35,7 @@ urlpatterns = [
             [
                 path('logout/', jwt_logout, name='logout'),
                 path('', include('inscricao.urls'), name='inscricao'),
-                #path(, include('ege_auth_jwt.urls', namespace='ege_auth_jwt')),
+                path('s/', include('cadastro_edital.urls', namespace='ege_auth_jwt')),
                 path('admin/', admin.site.urls),
             ]
         )
