@@ -9,19 +9,15 @@
 {% block content %}
     <h1>Nova inscrição</h1>
     <form method="POST" class="inscricao">
+
          {% csrf_token %}
+        <h2>Informações pessoais</h2>
          {{ form1.as_p }}
-    <p></p>
 
-         <h2>Endereço</h2>
-
-        {% csrf_token %}
-        {{ form2.as_p }}
-    <p></p>
+        <p></p>
         <button type="submit" class="save btn btn-default">Salvar</button>
     </form>
 {% endblock %}
-
 
 </body>
 </html>

@@ -1,8 +1,9 @@
 from django.db import models
-from django.db.models import OneToOneField, CASCADE
+from django.db.models import Model, ForeignKey, OneToOneField, CASCADE
+from django.db.models import CharField, BooleanField, URLField, PositiveIntegerField, DateTimeField, DateField, DecimalField, FloatField, EmailField
 
 
-class Candidato(models.Model):
+class Candidato(Model):
 
     SEXO = (
         (1, 'Feminino'),
@@ -67,22 +68,30 @@ class Candidato(models.Model):
         (TOCANTINS, 'Tocantins'),
     )
 
-    cpf = models.CharField('CPF', max_length=200, unique=True)
-    nome_civil = models.CharField('Nome Civil', max_length=200)
-    nome_social = models.CharField('Nome Social', max_length=200)
-    nome_apresentacao = models.CharField('Nome de Apresentação', max_length=200)
-    nome_usual = models.CharField('Nome Usual', max_length=200)
-    data_nascimento = models.DateField('Data de Nascimento')
-    estado_nascimento = models.CharField('Estado de Nascimento', max_length=200)
-    nacionalidade = models.CharField('Nacionalidade', max_length=200)
-    nome_mae = models.CharField('Nome da Mãe', max_length=200)
-    nome_pai = models.CharField('Nome do Pai', max_length=200)
-    sexo = models.PositiveIntegerField('Sexo', choices=SEXO)
-    rg = models.PositiveIntegerField('RG')
-    data_emissao = models.DateField('Data de emissão')
-    estado_emissao = models.CharField('Estado Emissão', max_length=2, choices=ESTADO, default=RIOGRANDEDONORTE)
-    telefone = models.CharField('Telefone', max_length=200)
-    email = models.EmailField('E-mail', unique=True, null=True)
+    cpf = CharField('CPF', max_length=150, unique=True)
+    nome_civil = CharField('Nome Civil', max_length=150)
+    nome_social = CharField('Nome Social', max_length=150)
+    nome_apresentacao = CharField('Nome de Apresentação', max_length=150)
+    nome_usual = CharField('Nome Usual', max_length=150)
+    data_nascimento = DateField('Data de Nascimento')
+    nome_mae = CharField('Nome da Mãe', max_length=150)
+    nome_pai = CharField('Nome do Pai', max_length=150)
+    sexo = PositiveIntegerField('Sexo', choices=SEXO)
+    rg = PositiveIntegerField('RG')
+    data_emissao = DateField('Data de emissão')
+    estado_emissao = CharField('Estado Emissão', max_length=2, choices=ESTADO, default=RIOGRANDEDONORTE)
+    orgao_rg = CharField('Órgão do RG', max_length=100)
+    telefone = CharField('Telefone', max_length=150)
+    email = EmailField('E-mail', unique=True)
+    pais_nascimento = CharField('País de Nascimento', max_length=100)
+    estado_nascimento = CharField('Estado de Nascimento', max_length=2, choices=ESTADO, default=RIOGRANDEDONORTE)
+    cidade_nascimento = CharField('Município de Nascimento', max_length=150)
+    cep = CharField('CEP', max_length=50)
+    endereco = CharField('Endereço', max_length=200)
+    complemento = CharField('Complento', max_length=100, null=True)
+    uf = CharField('UF', max_length=100)
+    cidade = CharField('Cidade', max_length=100)
+
 
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'cpf'
@@ -90,28 +99,14 @@ class Candidato(models.Model):
     is_authenticated = True
 
     def __str__(self):
-        return self.nome_civil
-
-class Endereco(models.Model):
-    municipio = models.CharField('Município', max_length=200)
-    pais_nascimento = models.CharField('País de Nascimento', max_length=200)
-    cep = models.CharField('CEP', max_length=200)
-    endereco = models.CharField('Endereço', max_length=200)
-    complemento = models.CharField('Complento', max_length=200)
-    uf = models.CharField('UF', max_length=200)
-    cidade = models.CharField('Cidade', max_length=200)
-    candidato = OneToOneField(
-    Candidato,on_delete=CASCADE,
-    )
-
-    def __str__(self):
-        return self.municipio
+        return self.cpf
 
 
-class Inscricao(models.Model):
-    numero = models.CharField('Número', max_length=200)
-    #processoSeletivo = models.ForeignKey(ProcessoSeletivo, on_delete=models.CASCADE)
-    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
+#class Inscricao(Model):
+#    numero = models.CharField('Número', max_length=200)
+#    #processoSeletivo = models.ForeignKey(ProcessoSeletivo, on_delete=models.CASCADE)
+#    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
+#
+#    def __str__(self):
+#        return self.numero
 
-    def __str__(self):
-        return self.numero

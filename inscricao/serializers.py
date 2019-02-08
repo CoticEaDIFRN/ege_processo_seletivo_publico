@@ -19,8 +19,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 from rest_framework.serializers import ModelSerializer
-from .models import Candidato, Endereco
-
+from .models import Candidato
 
 class CandidatiSerializer(ModelSerializer):
     class Meta:
@@ -28,7 +27,7 @@ class CandidatiSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class EnderecoSerializer(ModelSerializer):
-    class Meta:
-        model = Endereco
-        fields = '__all__'
+# class EnderecoSerializer(ModelSerializer):
+#     class Meta:
+#         model = Endereco
+#         fields = '__all__'

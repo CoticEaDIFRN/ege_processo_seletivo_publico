@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidato, Endereco, Inscricao
+from .models import Candidato
 
 class CandidatoForm(forms.ModelForm):
 
@@ -8,10 +8,11 @@ class CandidatoForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PagamentoForm(forms.ModelForm):
-    class Meta:
-        model = Endereco
-        fields = ['municipio', 'pais_nascimento', 'cep', 'endereco', 'complemento', 'uf', 'cidade']
+# class EnderecoForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = Endereco
+#         fields = ['municipio', 'pais_nascimento', 'cep', 'endereco', 'complemento', 'uf', 'cidade']
 
 # class VagaForm(forms.ModelForm):
 #     class Meta:

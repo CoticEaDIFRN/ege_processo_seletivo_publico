@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Editais</title>
+</head>
+<body>
+    <h1>Lista de Editais Cadastrados:</h1>
+
+    <ul>
+    {%for transacao in transacoes%}
+        <P></P>
+        <li> {{transacao.cpf}}</li>
+    {%endfor%}
+    </ul>
+
+
+</body>
+</html>
