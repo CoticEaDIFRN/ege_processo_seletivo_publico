@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Model, ForeignKey, OneToOneField, CASCADE
 from django.db.models import CharField, BooleanField, URLField, PositiveIntegerField, DateTimeField, DateField, DecimalField, FloatField, EmailField
+from django.contrib.auth.models import AbstractUser
 
 
 class Candidato(Model):
@@ -92,7 +93,6 @@ class Candidato(Model):
     uf = CharField('UF', max_length=100)
     cidade = CharField('Cidade', max_length=100)
 
-
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'cpf'
     is_anonymous = True
@@ -100,6 +100,8 @@ class Candidato(Model):
 
     def __str__(self):
         return self.cpf
+
+
 
 
 #class Inscricao(Model):
