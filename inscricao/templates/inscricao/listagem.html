@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Editais</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Lista de inscrições</title>
 </head>
 <body>
-    <h1>Lista de Editais Cadastrados:</h1>
-
-    <ul>
+<h1>Lista de inscrições</h1>
     {%for transacao in transacoes%}
         <P></P>
-        <li> {{transacao.cpf}}</li>
+        <li> {{transacao.cpf}} </li>
     {%endfor%}
     </ul>
 

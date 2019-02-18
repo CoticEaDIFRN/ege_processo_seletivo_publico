@@ -13,4 +13,6 @@ urlpatterns = [
     path('', views.nova_inscricao, name='nova_inscricao'),
     path('api/v1/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('cadastro/', views.cadastro)
+    #path('candidatos/',views.authenticate_credentials),
 ]

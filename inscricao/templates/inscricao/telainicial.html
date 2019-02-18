@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <h1>Lista de Editais Cadastrados:</h1>
+
+    <ul>
+    {%for c in candidato%}
+        <P></P>
+        <li> {{c.cpf}} - {{c.nome_civil}}</li>
+    {%endfor%}
+    </ul>
+</body>
+</html>
