@@ -1,25 +1,199 @@
-<!DOCTYPE html>
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% comment %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>EGE-inscrição</title>
 </head>
+
+
 <body>
+    <h2>Nova inscrição</h2>
 
-{% block content %}
-    <h1>Nova inscrição</h1>
-    <form method="POST" class="inscricao">
+        <div class="TabControl">
+            <div id="header">
+                <ul class="abas">
+                    <li>
+                        <div class="aba">
+                            <span>Processo seletivo</span>
 
-         {% csrf_token %}
-        <h2>Informações pessoais</h2>
-         {{ form1.as_p }}
+                        </div>
+                    </li>
+                    <li>
+                         <div class="aba">
+                            <span>Informações pessoais</span>
+                         </div>
+                    </li>
+                    <li>
+                        <div class="aba">
+                            <span>Documentação</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="aba">
+                            <span>Confirmação</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        <div id="content">
 
-        <button type="submit" class="save btn btn-default">Salvar</button>
+        {% block content %}
+        <form method="POST" class="inscricao">
+            <div class="conteudo">
 
-    </form>
 
-{% endblock %}
+
+                <button class="next">Próximo</button>
+
+            </div>
+            <div class="conteudo">
+                {% csrf_token %}
+                <h2>Informações pessoais</h2>
+                {{ form1.as_p }}
+                <button type="submit" class="save btn btn-default">Salvar</button>
+                <button class="prev">Anterior</button>
+                <button class="next">Próximo</button>
+            </div>
+            <div class="conteudo">
+                {% csrf_token %}
+                {{ form2.as_p }}                <button class="prev">Anterior</button>
+                <button class="next">Próximo</button>
+            </div>
+            <div class="conteudo">
+                Conteúdo da aba 4
+                <button class="prev">Anterior</button>
+        </div>
+         </form>
+        {% endblock %}
+    </div>
+</div>
+
+
+
 
 </body>
 </html>
+
+{% endcomment %}
+
+{% block content %}
+<div id="inscricao">
+  <template>
+    <div>
+      <v-tabs
+        v-model="active"
+        color="cyan"
+        dark
+        slider-color="yellow"
+      >
+        <v-tab
+          v-for="item in items"
+          :key="item"
+          ripple
+        >
+          ${ item }
+        </v-tab>
+
+        <!--LER LISTA COMO NO EXEMPLO DAS ABAS ACIMA-->
+
+       <!-- <v-tab-item
+          v-for="n in 5"
+          :key="n"
+        >
+          <v-card flat>
+
+            <v-card-text>${ text }</v-card-text>
+          </v-card>
+        </v-tab-item>-->
+
+        <v-tab-item :key=1 >
+          <v-card flat>
+
+            <v-card-text>${ text }</v-card-text>
+
+            <div class="text-xs-center mt-3">
+        <v-btn @click="next">next tab</v-btn>
+      </div>
+          </v-card>
+        </v-tab-item>
+
+        <v-tab-item :key=2 >
+          <v-card flat>
+
+            <v-card-text>
+              {% csrf_token %}
+              <h3>Informações pessoais</h3>
+              {{ form1.as_p }}
+            </v-card-text>
+
+            <div class="text-xs-center mt-3">
+        <v-btn @click="next">next tab</v-btn>
+      </div>
+          </v-card>
+        </v-tab-item>
+
+         <v-tab-item :key=3 >
+          <v-card flat>
+
+            <v-card-text>
+              {% csrf_token %}
+              <h3>Documentação</h3>
+              {{ form2.as_p }}
+            </v-card-text>
+
+           <div class="add">
+              <v-btn color="blue" @click="save">Concluir</v-btn>
+            </div>
+            
+          </v-card>
+        </v-tab-item>
+
+         <v-tab-item :key=4 >
+          <v-card flat>
+
+            <v-card-text> Mostrar informações que foram salvas no processo seletivo</v-card-text>
+            <div class="add">
+              <v-btn color="blue" @click="save">Concluir</v-btn>
+            </div>
+          </v-card>
+        </v-tab-item>
+
+
+      </v-tabs>
+
+
+    </div>
+  </template>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+  new Vue({
+    el: "#inscricao",
+    delimiters: ['${', '}'],
+    data: {
+      active: null,
+      tab: null,
+      items: [
+        'Processo seletivo', 'Informações pessoais', 'Documentação', 'Confirmação'
+      ],
+
+      text: 'Colocar aqui a listagem dos editais.'
+    },
+    methods: {
+      next () {
+        const active = parseInt(this.active);
+        this.active = (active < this.items.length - 1 ? active + 1 : 0)
+      }
+    }
+  })
+</script>
+
+{% endblock %}

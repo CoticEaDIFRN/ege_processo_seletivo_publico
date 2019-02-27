@@ -1,18 +1,20 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 from python_brfied.shortcuts.sync_http import get_json
-from inscricao.forms import CandidatoForm
+from inscricao.forms import CandidatoForm, DocumentoForm
 from .models import Candidato
 
 def nova_inscricao(request):
     data = {}
     form1 = CandidatoForm(request.POST or None)
-
-    if form1.is_valid():
+    form2 = DocumentoForm(request.POST or None)
+    if form1.is_valid() and form2.is_valid():
         form1.save()
+        form2.save()
         return listagem(request)
 
     data['form1'] = form1
+    data['form2'] = form2
 
     return render(request, 'inscricao/inscricao.html', data)
 

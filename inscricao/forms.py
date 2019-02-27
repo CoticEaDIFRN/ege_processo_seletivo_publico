@@ -1,10 +1,16 @@
 from django import forms
-from .models import Candidato
+from .models import Candidato, Documento
 
 class CandidatoForm(forms.ModelForm):
 
     class Meta:
         model = Candidato
+        fields = '__all__'
+
+class DocumentoForm(forms.ModelForm):
+
+    class Meta:
+        model = Documento
         fields = '__all__'
 
 

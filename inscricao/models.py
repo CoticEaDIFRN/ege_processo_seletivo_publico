@@ -102,6 +102,13 @@ class Candidato(Model):
         return self.cpf
 
 
+class Documento(Model):
+
+    descricao = CharField('Descrição', max_length=150)
+    tipo = CharField('Tipo', max_length=150)
+
+    def __str__(self):
+        return self.descricao
 
 
 #class Inscricao(Model):

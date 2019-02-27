@@ -25,7 +25,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from ege_utils.views import jwt_logout
+from ege_auth_jwt.views import jwt_logout
 
 urlpatterns = [
     path(
