@@ -1,85 +1,13 @@
 {% extends "admin/base_site.html" %}
 {% load i18n static %}
 
-{% comment %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>EGE-inscrição</title>
 </head>
 
-
 <body>
-    <h2>Nova inscrição</h2>
 
-        <div class="TabControl">
-            <div id="header">
-                <ul class="abas">
-                    <li>
-                        <div class="aba">
-                            <span>Processo seletivo</span>
-
-                        </div>
-                    </li>
-                    <li>
-                         <div class="aba">
-                            <span>Informações pessoais</span>
-                         </div>
-                    </li>
-                    <li>
-                        <div class="aba">
-                            <span>Documentação</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="aba">
-                            <span>Confirmação</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        <div id="content">
-
-        {% block content %}
-        <form method="POST" class="inscricao">
-            <div class="conteudo">
-
-
-
-                <button class="next">Próximo</button>
-
-            </div>
-            <div class="conteudo">
-                {% csrf_token %}
-                <h2>Informações pessoais</h2>
-                {{ form1.as_p }}
-                <button type="submit" class="save btn btn-default">Salvar</button>
-                <button class="prev">Anterior</button>
-                <button class="next">Próximo</button>
-            </div>
-            <div class="conteudo">
-                {% csrf_token %}
-                {{ form2.as_p }}                <button class="prev">Anterior</button>
-                <button class="next">Próximo</button>
-            </div>
-            <div class="conteudo">
-                Conteúdo da aba 4
-                <button class="prev">Anterior</button>
-        </div>
-         </form>
-        {% endblock %}
-    </div>
-</div>
-
-
-
-
-</body>
-</html>
-
-{% endcomment %}
 
 {% block content %}
 <div id="inscricao">
@@ -87,9 +15,9 @@
     <div>
       <v-tabs
         v-model="active"
-        color="cyan"
-        dark
-        slider-color="yellow"
+        color="##FFFFFF"
+
+        slider-color="#42A5F5"
       >
         <v-tab
           v-for="item in items"
@@ -110,15 +38,15 @@
             <v-card-text>${ text }</v-card-text>
           </v-card>
         </v-tab-item>-->
-
         <v-tab-item :key=1 >
           <v-card flat>
 
             <v-card-text>${ text }</v-card-text>
 
             <div class="text-xs-center mt-3">
-        <v-btn @click="next">next tab</v-btn>
-      </div>
+                <v-btn @click="prev">prev tab</v-btn>
+                <v-btn @click="next">next tab</v-btn>
+            </div>
           </v-card>
         </v-tab-item>
 
@@ -126,14 +54,17 @@
           <v-card flat>
 
             <v-card-text>
+
               {% csrf_token %}
               <h3>Informações pessoais</h3>
               {{ form1.as_p }}
+
             </v-card-text>
 
             <div class="text-xs-center mt-3">
-        <v-btn @click="next">next tab</v-btn>
-      </div>
+                <v-btn @click="prev">prev tab</v-btn>
+                <v-btn @click="next">next tab</v-btn>
+            </div>
           </v-card>
         </v-tab-item>
 
@@ -147,8 +78,9 @@
             </v-card-text>
 
            <div class="add">
-              <v-btn color="blue" @click="save">Concluir</v-btn>
-            </div>
+              <v-btn @click="prev">prev tab</v-btn>
+              <v-btn @click="submit">salvar</v-btn>
+           </div>
             
           </v-card>
         </v-tab-item>
@@ -163,7 +95,6 @@
           </v-card>
         </v-tab-item>
 
-
       </v-tabs>
 
 
@@ -173,6 +104,7 @@
 {% endblock %}
 
 {% block javascript %}
+
 
 <script>
   new Vue({
@@ -191,9 +123,20 @@
       next () {
         const active = parseInt(this.active);
         this.active = (active < this.items.length - 1 ? active + 1 : 0)
+      },
+      prev () {
+        const active = parseInt(this.active);
+        this.active = (active-1)
+      },
+      submit () {
+        const active = parseInt(this.active);
+        this.active = listagem(request)
       }
     }
   })
 </script>
 
 {% endblock %}
+
+</body>
+</html>

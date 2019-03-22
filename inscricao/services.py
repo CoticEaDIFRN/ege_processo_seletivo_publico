@@ -23,8 +23,8 @@ from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from .models import Candidato
-from .serializers import CandidatiSerializer
+from .models import Candidato, Documento
+from .serializers import CandidatiSerializer, DocumentoSerializer
 
 
 class BaseModelService(ReadOnlyModelViewSet):
@@ -35,9 +35,7 @@ class CandidatoService(BaseModelService):
     queryset = Candidato.objects.all()
     serializer_class = CandidatiSerializer
 
-#
-# class EnderecoService(BaseModelService):
-#     queryset = Endereco.objects.all()
-#     serializer_class = EnderecoSerializer
-
+class DocumentoService(BaseModelService):
+    queryset = Documento.objects.all()
+    serializer_class = DocumentoSerializer
 

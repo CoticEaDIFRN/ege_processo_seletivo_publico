@@ -34,7 +34,8 @@ urlpatterns = [
             [
                 path('logout/', jwt_logout, name='logout'),
                 path('', include('inscricao.urls'), name='inscricao'),
-                path('admin/', admin.site.urls),
+                path('', include('cadastro.urls'), name='cadastro'),
+                #path('admin/', admin.site.urls),
             ]
         )
     ),

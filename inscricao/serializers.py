@@ -19,11 +19,17 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 from rest_framework.serializers import ModelSerializer
-from .models import Candidato
+from .models import Candidato, Documento
 
 class CandidatiSerializer(ModelSerializer):
     class Meta:
         model = Candidato
+        fields = '__all__'
+
+class DocumentoSerializer(ModelSerializer):
+
+    class Meta:
+        model = Documento
         fields = '__all__'
 
 

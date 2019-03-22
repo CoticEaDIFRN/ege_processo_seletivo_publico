@@ -35,10 +35,13 @@ DEBUG_TOOLBAR_CONFIG = {
 
 
 # Apps
-MY_APPS = env_as_list('MY_APPS', 'inscricao,ege_auth_jwt,ege_theme')
+MY_APPS = env_as_list('MY_APPS', 'inscricao,'
+                                 'ege_auth_jwt,'
+                                 'ege_theme,'
+                                 'cadastro')
 DEV_APPS = env_as_list('DEV_APPS', 'debug_toolbar,django_extensions' if DEBUG else '')
 # THIRD_APPS = env_as_list('THIRD_APPS', 'ege_theme')
-THIRD_APPS = env_as_list('THIRD_APPS', 'rest_framework')
+THIRD_APPS = env_as_list('THIRD_APPS', 'rest_framework', 'core')
 DJANGO_APPS = env_as_list('DJANGO_APPS', 'django.contrib.admin,'
                                          'django.contrib.auth,'
                                          'django.contrib.contenttypes,'
@@ -114,7 +117,7 @@ LOGIN_URL = env("DJANGO_LOGIN_URL", 'http://localhost/selecao/jwt/login')
 LOGOUT_URL = env("DJANGO_LOGOUT_URL", 'http://localhost/selecao/logout/')
 LOGIN_REDIRECT_URL = env("DJANGO_LOGIN_REDIRECT_URL", 'http://localhost/selecao/i/')
 LOGOUT_REDIRECT_URL = env("DJANGO_LOGOUT_REDIRECT_URL", 'http://localhost/selecao/i/')
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend','accounts.backends.EmailAuth')
 EGE_ACESSO_JWT_AUTHORIZE = env("EGE_ACESSO_JWT_AUTHORIZE", 'http://localhost/ege/acesso/jwt/authorize/')
 EGE_ACESSO_JWT_VALIDATE = env("EGE_ACESSO_JWT_VALIDATE", 'http://acesso:8000/ege/acesso/jwt/validate/')
 EGE_ACESSO_JWT_LOGOUT = env("EGE_ACESSO_JWT_LOGOUT", 'http://acesso:8000/ege/acesso/logout/')
@@ -122,4 +125,4 @@ EGE_ACESSO_JWT_CLIENT_ID = env("EGE_ACESSO_JWT_CLIENT_ID", '_EGE_ACESSO_JWT_CLIE
 EGE_ACESSO_JWT_SECRET = env("EGE_ACESSO_JWT_SECRET", '_EGE_ACESSO_JWT_SECRET_')
 EGE_AUTH_JWT_BACKEND = env("EGE_AUTH_JWT_BACKEND", 'ege_auth_jwt.backends.PreExistentUserJwtBackend')
 
-AUTH_USER_MODEL = env("auth_USER_MODEL", 'inscricao.Candidato')
+AUTH_USER_MODEL = env("auth_USER_MODEL", 'cadastro.Usuario')

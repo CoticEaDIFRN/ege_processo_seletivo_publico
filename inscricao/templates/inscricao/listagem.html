@@ -7,12 +7,19 @@
 </head>
 <body>
 <h1>Lista de inscrições</h1>
+    <ul>
     {%for transacao in transacoes%}
         <P></P>
         <li> {{transacao.cpf}} </li>
     {%endfor%}
     </ul>
 
+    <ul>
+    {%for doc in documentos%}
+        <P></P>
+        <li> {{doc.descricao}} </li>
+    {%endfor%}
+    </ul>
 
 </body>
 </html>

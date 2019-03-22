@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models import Model, ForeignKey, OneToOneField, CASCADE
 from django.db.models import CharField, BooleanField, URLField, PositiveIntegerField, DateTimeField, DateField, DecimalField, FloatField, EmailField
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
+from cadastro.models import Usuario
 
 
 class Candidato(Model):
@@ -69,9 +71,10 @@ class Candidato(Model):
         (TOCANTINS, 'Tocantins'),
     )
 
-    cpf = CharField('CPF', max_length=150, unique=True)
+    usuario = ForeignKey(Usuario, verbose_name='Usuário', on_delete=CASCADE)
+
     nome_civil = CharField('Nome Civil', max_length=150)
-    nome_social = CharField('Nome Social', max_length=150)
+    nome_social = CharField('Nome Social', max_length=150, null=True, blank=True)
     nome_apresentacao = CharField('Nome de Apresentação', max_length=150)
     nome_usual = CharField('Nome Usual', max_length=150)
     data_nascimento = DateField('Data de Nascimento')
@@ -83,7 +86,6 @@ class Candidato(Model):
     estado_emissao = CharField('Estado Emissão', max_length=2, choices=ESTADO, default=RIOGRANDEDONORTE)
     orgao_rg = CharField('Órgão do RG', max_length=100)
     telefone = CharField('Telefone', max_length=150)
-    email = EmailField('E-mail', unique=True)
     pais_nascimento = CharField('País de Nascimento', max_length=100)
     estado_nascimento = CharField('Estado de Nascimento', max_length=2, choices=ESTADO, default=RIOGRANDEDONORTE)
     cidade_nascimento = CharField('Município de Nascimento', max_length=150)
@@ -92,11 +94,6 @@ class Candidato(Model):
     complemento = CharField('Complento', max_length=100, null=True)
     uf = CharField('UF', max_length=100)
     cidade = CharField('Cidade', max_length=100)
-
-    REQUIRED_FIELDS = []
-    USERNAME_FIELD = 'cpf'
-    is_anonymous = True
-    is_authenticated = True
 
     def __str__(self):
         return self.cpf
