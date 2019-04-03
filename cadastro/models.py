@@ -16,8 +16,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-    REQUIRED_FIELDS = ['first_name', 'email']
+    REQUIRED_FIELDS = ['nome', 'email']
     USERNAME_FIELD = 'cpf'
 
     def __str__(self):
-        return "" % (self.cpf, self.first_name)
+        return "" % (self.cpf, self.nome)
+
+
+
+#.setpassword()

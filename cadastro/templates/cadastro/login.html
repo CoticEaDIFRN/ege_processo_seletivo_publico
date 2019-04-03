@@ -3,34 +3,25 @@
 
 {% block body %}
 
-<form class="form-signin" role="form" action="{% url 'registrar' %}" method="post">
+<form class="form-signin" role="form" action="{% url 'login' %}" method="post">
 
     {% csrf_token %}
 
-    <h2 class="form-signin-heading">Crie seu usuário</h2>
+    <h2 class="form-signin-heading">Entre no sistema</h2>
 
-     <input type="text" id="id_cpf" name="cpf" class="form-control"
-        placeholder="CPF *" required >
-
-    <input type="text" id="id_nome" name="nome" class="form-control"
-        placeholder="Nome *" required >
 
     <input type="text" id="id_email" name="email" class="form-control"
         placeholder="Email *" required autofocus>
 
     <hr />
 
-    <input type="password" id="id_senha" name="senha" class="form-control" 
+    <input type="password" id="id_senha" name="senha" class="form-control"
         placeholder="Senha *" required>
-
-    <input type="password" id="id_senha2" name="senha2" class="form-control"
-        placeholder="Confirme a Senha *" required>
-
 
     <hr />
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-        Registrar
+        Entrar
     </button>
 
     <hr/>
