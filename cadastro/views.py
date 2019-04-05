@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
 from django.views.generic.base import View
 from django.contrib.auth import authenticate, login
-from .forms import RegistrarCadastroForm, RegistrarLoginForm
+from .forms import RegistrarCadastroForm
 from .models import Usuario
 
 
@@ -33,6 +33,7 @@ class RegistrarCadastroView(View):
 
 
     def index(request):
+
         return render(request, 'cadastro/index.html')
 
 
@@ -46,16 +47,37 @@ class Logar(View):
     def get(self, request):
         return render(request, self.template_name)
 
-    def post(self, request):
-        form = RegistrarLoginForm(request.POST)
-
     def entrar(self, request):
+            form = request.POST
 
-        usuario_aux = Usuario.objects.get(email=request.POST['email'])
-        usuario = authenticate(username=usuario_aux.email,
-                                   password=request.POST['senha'])
-        if usuario is not None:
-            login(request, usuario)
-            return HttpResponseRedirect('cadastro/index.html')
+            if form.is_valid():
+                dados_form = form.data
+                if Usuario.objects.filter(email=form.data['email']).exists():
+                    email = dados_form['email']
+                    password = dados_form['senha']
+                    user = authenticate(email=email, password=password)
+                    if user is not None:
+                        login(request, user)
+                        return HttpResponseRedirect('cadastro/index.html')
+                    else:
+                        return HttpResponse('Login inválido')
 
-        return HttpResponseRedirect('cadastro/login.html')
+
+    # def entrar(self, request):
+    #
+    #      # form = RegistrarLoginForm(request.POST)
+    #      # if form.is_valid():
+    #      #     dados_form = form.data
+    #
+    #      email = dados_form['email']
+    #      password = dados_form['senha']
+    #      user = authenticate(email=email, password=password)
+    #      if user is not None:
+    #          if user.is_active:
+    #              login(request, user)
+    #              return HttpResponseRedirect('cadastro/index.html')
+    #          else:
+    #             return HttpResponse('conta desabilitada')
+    #      else:
+    #          return HttpResponse('login inválido')
+    #
