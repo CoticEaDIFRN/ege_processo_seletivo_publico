@@ -20,7 +20,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'cpf'
 
     def __str__(self):
-        return "" % (self.cpf, self.nome)
+        return " %s - %s " % (self.cpf, self.nome)
 
 
 
