@@ -1,13 +1,5 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from django.contrib import admin
-from django.contrib.auth import views as auth_views
-
 from cadastro.views import RegistrarCadastroView, Logar
-# from inscricao.services import CandidatoService
-
-# router = DefaultRouter()
-# router.register('candidato', CandidatoService)
 
 
 urlpatterns = [

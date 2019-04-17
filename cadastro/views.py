@@ -34,7 +34,7 @@ class RegistrarCadastroView(View):
 
     def index(request):
 
-        return render(request, 'cadastro/index.html')
+        return render(request, 'cadastro/login.html')
 
 
     def lista_cadastros(request):

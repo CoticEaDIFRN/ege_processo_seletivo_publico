@@ -1,142 +1,158 @@
-{% extends "admin/base_site.html" %}
-{% load i18n static %}
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-
-<body>
+{% extends 'cadastro/base.html' %}
 
 
-{% block content %}
-<div id="inscricao">
-  <template>
-    <div>
-      <v-tabs
-        v-model="active"
-        color="##FFFFFF"
-
-        slider-color="#42A5F5"
-      >
-        <v-tab
-          v-for="item in items"
-          :key="item"
-          ripple
-        >
-          ${ item }
-        </v-tab>
-
-        <!--LER LISTA COMO NO EXEMPLO DAS ABAS ACIMA-->
-
-       <!-- <v-tab-item
-          v-for="n in 5"
-          :key="n"
-        >
-          <v-card flat>
-
-            <v-card-text>${ text }</v-card-text>
-          </v-card>
-        </v-tab-item>-->
-        <v-tab-item :key=1 >
-          <v-card flat>
-
-            <v-card-text>${ text }</v-card-text>
-
-            <div class="text-xs-center mt-3">
-                <v-btn @click="prev">prev tab</v-btn>
-                <v-btn @click="next">next tab</v-btn>
-            </div>
-          </v-card>
-        </v-tab-item>
-
-        <v-tab-item :key=2 >
-          <v-card flat>
-
-            <v-card-text>
-
-              {% csrf_token %}
-              <h3>Informações pessoais</h3>
-              {{ form1.as_p }}
-
-            </v-card-text>
-
-            <div class="text-xs-center mt-3">
-                <v-btn @click="prev">prev tab</v-btn>
-                <v-btn @click="next">next tab</v-btn>
-            </div>
-          </v-card>
-        </v-tab-item>
-
-         <v-tab-item :key=3 >
-          <v-card flat>
-
-            <v-card-text>
-              {% csrf_token %}
-              <h3>Documentação</h3>
-              {{ form2.as_p }}
-            </v-card-text>
-
-           <div class="add">
-              <v-btn @click="prev">prev tab</v-btn>
-              <v-btn @click="submit">salvar</v-btn>
-           </div>
-            
-          </v-card>
-        </v-tab-item>
-
-         <v-tab-item :key=4 >
-          <v-card flat>
-
-            <v-card-text> Mostrar informações que foram salvas no processo seletivo</v-card-text>
-            <div class="add">
-              <v-btn color="blue" @click="save">Concluir</v-btn>
-            </div>
-          </v-card>
-        </v-tab-item>
-
-      </v-tabs>
+{% block body %}
 
 
-    </div>
-  </template>
-</div>
+
+<form class="form-signin" role="form" action="{% url 'registrar_inscricao' %}" method="post">
+
+    {% csrf_token %}
+
+    <h3 class="form-signin-heading">Informações pessoais</h3>
+
+
+    <input type="text" id="id_cpf" name="cpf" class="form-control"
+        placeholder="CPF *" required >
+    <p><p/>
+
+    <input type="text" id="id_nome_civil" name="nome_civil" class="form-control"
+        placeholder="Nome civil *" required >
+    <p><p/>
+
+     <input type="text" id="id_nome_social" name="nome_social" class="form-control"
+        placeholder="Nome social *" required >
+    <p><p/>
+
+    <input type="text" id="id_nome_apresentacao" name="nome_apresentacao" class="form-control"
+        placeholder="Nome de Apresentação *" required >
+    <p><p/>
+
+    <input type="text" id="id_nome_usual" name="nome_usual" class="form-control"
+        placeholder="Nome usual *" required >
+    <p><p/>
+
+     <input type="text" id="id_nome_mae" name="nome_mae" class="form-control"
+        placeholder="Nome da mãe *" required >
+    <p><p/>
+    <input type="text" id="id_nome_pai" name="nome_pai" class="form-control"
+        placeholder="Nome do pai *" required >
+    <p><p/>
+
+    <select id=cbSexo class="form-control" name="sexo" placeholder="Sexo *">
+        <option value="f" selected>Feminino</option>
+        <option value="m" >Masculino</option>
+        <option value="n" >Não informar</option>
+
+    </select>
+
+    <p><p/>
+
+     Data de Nascimento
+    <input type="date" id="id_data_nascimento" name="data_nascimento" class="form-control"
+        placeholder="Data de nascimento *" required >
+    <p><p/>
+    <input type="text" id="id_pais_nascimento" name="pais_nascimento" class="form-control"
+           placeholder=" País de nascimento *" required>
+    <p><p/>
+     <input type="text" id="id_estado_nascimento" name= "estado_nascimento" class="form-control"
+           placeholder=" Estado de nascimento *" required>
+    <p><p/>
+     <input type="text" id="id_cidade_nascimento" name= "cidade_nascimento" class="form-control"
+           placeholder=" Cidade de nascimento *" required>
+
+    <input type="text" id="id_rg" name="rg" class="form-control"
+        placeholder="Número do RG *" required >
+    <p><p/>
+     Data de Emissão
+    <input type="date" id="id_data_emissao" name="data_emissao" class="form-control"
+        placeholder="Data de emissao *" required >
+    <p><p/>
+
+    <input type="text" id="id_orgao_rg" name="orgao_rg" class="form-control"
+        placeholder="Orgão de RG *" required >
+
+    <p><p/>
+
+    <input type="text" id="id_estado_emissao" name="estado_emissao" class="form-control"
+        placeholder="UF do RG *" required >
+    <p><p/>
+
+    <input type="text" id="id_email" name="email" class="form-control"
+        placeholder="E-mail *" required >
+    <p><p/>
+
+    <input type="text" id="id_telefone" name="telefone" class="form-control phone-mask"
+           placeholder="Telefone *">
+
+    <p><p/>
+
+
+    <h3 class="form-signin-heading">Informações de endereço</h3>
+
+
+    <p><p/>
+    <input type="text" id="id_cep" name="cep" class="form-control"
+           placeholder=" CEP *">
+
+    <p><p/>
+    <input type="text" id="id_endereco" name="endereco" class="form-control"
+           placeholder=" Endereço *">
+
+    <p><p/>
+    <input type="text" id="id_complemento" name="complemento" class="form-control"
+           placeholder=" Complemento ">
+
+    <p><p/>
+    <input type="text" id="id_cidade" name="cidade" class="form-control"
+           placeholder=" Cidade *">
+
+     <p><p/>
+    <input type="text" id="id_estado" name="estado" class="form-control"
+           placeholder=" Estado ">
+
+    <p><p/>
+    <input type="text" id="id_pais" name="pais" class="form-control"
+           placeholder=" País *">
+
+    <p><p/>
+
+
+    <h3 class="form-signin-heading">Documentação</h3>
+
+
+
+    <p><p/>
+    <label for="id_doc_pessoal"> Documentação pessoal :</label>
+
+    <input type="file" id="id_doc_pessoal" name="doc_pessoal" class="custom-file-input" accept="image/png, image/jpeg, image/*,.pdf">
+
+    <p><p/>
+     <label for="id_doc_titulo"> Documentação pessoal :</label>
+    <input type="file" id="id_doc_titulo" name="doc_titulo" class="custom-file-input">
+
+    <p><p/>
+    <label for="id_doc_escolar"> Documentação pessoal :</label>
+    <input type="file" id="id_doc_escolar" name="doc_escolar" class="custom-file-input">
+    <hr/>
+
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+        Registrar
+    </button>
+
+
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                &times;
+            </button>
+            {{form.non_field_errors}}
+        </div>
+    {% endif %}
+
+</form>
+
 {% endblock %}
-
-{% block javascript %}
-
-
-<script>
-  new Vue({
-    el: "#inscricao",
-    delimiters: ['${', '}'],
-    data: {
-      active: null,
-      tab: null,
-      items: [
-        'Processo seletivo', 'Informações pessoais', 'Documentação', 'Confirmação'
-      ],
-
-      text: 'Colocar aqui a listagem dos editais.'
-    },
-    methods: {
-      next () {
-        const active = parseInt(this.active);
-        this.active = (active < this.items.length - 1 ? active + 1 : 0)
-      },
-      prev () {
-        const active = parseInt(this.active);
-        this.active = (active-1)
-      },
-      submit () {
-        const active = parseInt(this.active);
-        this.active = listagem(request)
-      }
-    }
-  })
-</script>
-
-{% endblock %}
-
-</body>
-</html>

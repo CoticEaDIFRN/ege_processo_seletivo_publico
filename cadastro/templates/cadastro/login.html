@@ -26,6 +26,11 @@
 
     <hr/>
 
+    <a href="{% url 'registrar' %}" class="top-menu"><span class="btn btn-link">Esqueceu a senha?</span></a>
+
+    <a href="{% url 'registrar' %}" class="top-menu"><span class="btn btn-link">Não possui conta?</span></a>
+
+
     {% if form.errors %}
         <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">

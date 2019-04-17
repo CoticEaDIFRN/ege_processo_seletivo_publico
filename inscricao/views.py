@@ -1,32 +1,65 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
+from django.views.generic.base import View
+from .forms import RegistrarInscricaoForm
 from python_brfied.shortcuts.sync_http import get_json
-from inscricao.forms import CandidatoForm, DocumentoForm
-from .models import Candidato
+from .models import Candidato, Documento
+from cadastro.models import Usuario
 
-def nova_inscricao(request):
-    data = {}
-    form1 = CandidatoForm(request.POST or None)
-    form2 = DocumentoForm(request.POST or None)
-    if form1.is_valid() and form2.is_valid():
-        form1.save()
-        form2.save()
-        return listagem(request)
+class RegistrarInscricaoView(View):
+    template_name = 'inscricao/inscricao.html'
 
-    data['form1'] = form1
-    data['form2'] = form2
+    def get(self, request):
+        return render(request, self.template_name)
 
-    return render(request, 'inscricao/inscricao.html', data)
+    def post(self, request):
+        form = RegistrarInscricaoForm(request.POST)
 
-def listagem(request):
-    data = {}
-    data['transacoes'] = Candidato.objects.all()
-    return render(request, 'inscricao/listagem.html', data)
 
-# def authenticate_credentials(request):
-    # result= {}
-    # result['candidato'] = get_json('http://acesso:8000/ege/selecao/api/v1/candidato/%s/')
-    # return render(request, 'inscricao/telainicial.html', result)
+        if form.is_valid():
+            dados_form = form.data
+            inscrito = Usuario.objects.get(cpf=dados_form['cpf'])
+            inscricao = Candidato.objects.create(usuario = inscrito,
+                                                 nome_civil=dados_form['nome_civil'],
+                                                 nome_social=dados_form['nome_social'],
+                                                 nome_apresentacao=dados_form['nome_apresentacao'],
+                                                 nome_usual=dados_form['nome_usual'],
+                                                 nome_mae=dados_form['nome_mae'],
+                                                 nome_pai=dados_form['nome_pai'],
+                                                 sexo=dados_form['sexo'],
+                                                 data_nascimento=dados_form['data_nascimento'],
+                                                 pais_nascimento=dados_form['pais_nascimento'],
+                                                 estado_nascimento=dados_form['estado_nascimento'],
+                                                 cidade_nascimento=dados_form['cidade_nascimento'],
+                                                 rg=dados_form['rg'],
+                                                 data_emissao=dados_form['data_emissao'],
+                                                 orgao_rg=dados_form['orgao_rg'],
+                                                 estado_emissao=dados_form['estado_emissao'],
+                                                 email=dados_form['email'],
+                                                 telefone=dados_form['telefone'],
+                                                 cep=dados_form['cep'],
+                                                 endereco=dados_form['endereco'],
+                                                 complemento=dados_form['complemento'],
+                                                 cidade=dados_form['cidade'],
+                                                 estado=dados_form['estado'],
+                                                 pais=dados_form['pais'],
+                                                 )
 
-def cadastro(request):
-    return render(request, 'inscricao/cadastro.html')
+            # upload = Documento.objects.create(candidato=inscrito,
+            #                                   descricao=dados_form['descricao'],
+            #                                   arquivo=dados_form['doc_pessoal'],
+            #                                   )
+
+
+            inscricao.save()
+            # upload.save()
+
+            return redirect('index')
+
+        return render(request, self.template_name, {'form': form})
+
+    def index(request):
+        return render(request, 'inscricao/telainicial.html')
+
+    def lista_inscricoes(request):
+        return render(request, 'inscricao/listagem.html', {'inscricao': Candidato.objects.all()})
