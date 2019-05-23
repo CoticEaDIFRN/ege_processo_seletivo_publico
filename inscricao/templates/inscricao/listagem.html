@@ -9,16 +9,16 @@
 			<strong>Todos os Cadastros</strong>
 		</div>
 
-		{% if usuario %}
+		{% if inscricao %}
 			<ul>
-				{% for cadastro in usuario %}
+				{% for candidato in inscricao %}
 					<li>
-						<a>{{ cadastro.nome }}</a> / {{ cadastro.email }}
+						<a>{{ candidato.nome }}</a> / {{ candidato.email }}
 					</li>
 				{% endfor %}
 			</ul>
 		{% else %}
-			<p>Nenhum Cadastro encontrado</p>
+			<p>Nenhum candidato encontrado</p>
 		{% endif %}
     </div>
 </div>

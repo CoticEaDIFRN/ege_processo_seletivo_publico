@@ -3,18 +3,19 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from .forms import RegistrarInscricaoForm
 from python_brfied.shortcuts.sync_http import get_json
-from .models import Candidato, Documento
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from .models import Candidato, Documento, Inscricao
 from cadastro.models import Usuario
 
 class RegistrarInscricaoView(View):
-    template_name = 'inscricao/inscricao.html'
+    template_name = 'inscricao/dados_pessoais.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
     def post(self, request):
         form = RegistrarInscricaoForm(request.POST)
-
 
         if form.is_valid():
             dados_form = form.data
@@ -45,21 +46,47 @@ class RegistrarInscricaoView(View):
                                                  pais=dados_form['pais'],
                                                  )
 
-            # upload = Documento.objects.create(candidato=inscrito,
-            #                                   descricao=dados_form['descricao'],
-            #                                   arquivo=dados_form['doc_pessoal'],
+            # documento = Documento.objects.create(titulo=dados_form['titulo'],
+            #                                      arquivo=request.POST['doc_pessoal'],
             #                                   )
 
 
             inscricao.save()
-            # upload.save()
+            # documento.save()
+
+            # inscricao = Inscricao.objects.create(numero = 1,
+            #                                      candidato = inscricao,
+            #                                      # documento = documento,
+            #                                      )
+            # inscricao.save()
 
             return redirect('index')
 
         return render(request, self.template_name, {'form': form})
 
-    def index(request):
+
+
+    # def upload_file(request):
+    #     if request.method == 'POST':
+    #         form = Documento(request.POST, request.FILES)
+    #         if form.is_valid():
+    #             request.handle_uploaded_file(request.FILES['file'])
+    #             return HttpResponseRedirect('/success/url/')
+    #     else:
+    #         form = Documento()
+    #
+    #     return render_to_response('upload.html', {'form': form})
+
+
+    # def handle_uploaded_file(f):
+    #     destination = open('file/name.txt', 'wb+')
+    #     for chunk in f.chunks():
+    #         destination.write(chunk)
+    #     destination.close()
+
+    def confirmarInscricao(request):
         return render(request, 'inscricao/telainicial.html')
+
 
     def lista_inscricoes(request):
         return render(request, 'inscricao/listagem.html', {'inscricao': Candidato.objects.all()})

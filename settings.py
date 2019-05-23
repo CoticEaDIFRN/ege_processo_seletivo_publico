@@ -102,6 +102,13 @@ ROOT_URLCONF = env('DJANGO_ROOT_URLCONF', 'urls')
 STATIC_URL = env('DJANGO_STATIC_URL', "/%s%s" % (URL_PATH_PREFIX, 'static/'))
 STATIC_ROOT = "/static"
 
+# STATICFILES_DIR = [
+#     os.path.join(BASE_DIR, "static")
+# ]
+
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = "{}/media".format(BASE_DIR)
+
 
 # Localization
 LANGUAGE_CODE = env('DJANGO_USE_I18N', 'pt-br')

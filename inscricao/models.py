@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Model, ForeignKey, OneToOneField, CASCADE
-from django.db.models import CharField, BooleanField, URLField, PositiveIntegerField, DateTimeField, DateField, DecimalField, FloatField, EmailField
+from django.db.models import CharField, BooleanField, URLField, PositiveIntegerField, DateTimeField, DateField, DecimalField, FloatField, EmailField, FileField
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from cadastro.models import Usuario
@@ -106,18 +106,18 @@ class Candidato(Model):
 
 class Documento(Model):
 
-    descricao = CharField('Descrição', max_length=150)
-    arquivo = CharField('Arquivo', max_length=150)
+    titulo = CharField('Título', max_length=50)
+    arquivo = FileField('Arquivo', upload_to="media/%Y/%m/%d/")
 
     def __str__(self):
-        return self.descricao
+        return self.titulo
 
 
-#class Inscricao(Model):
-#    numero = models.CharField('Número', max_length=200)
-#    #processoSeletivo = models.ForeignKey(ProcessoSeletivo, on_delete=models.CASCADE)
-#    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
-#
-#    def __str__(self):
-#        return self.numero
+class Inscricao(Model):
+    numero = CharField('Número', max_length=200)
+    candidato = OneToOneField(Candidato, on_delete=models.CASCADE)
+    documento = ForeignKey(Documento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.numero
 

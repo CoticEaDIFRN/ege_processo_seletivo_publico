@@ -11,7 +11,7 @@ router.register('candidato', CandidatoService)
 
 urlpatterns = [
     path('inscricao/', RegistrarInscricaoView.as_view(), name='registrar_inscricao'),
-    path('listar', RegistrarInscricaoView.lista_inscricoes, name='listar'),
+    path('listarinscricao', RegistrarInscricaoView.lista_inscricoes, name='listar'),
     path('api/v1/', include(router.urls)),
     path('admin/', admin.site.urls),
     #path('candidatos/',views.authenticate_credentials),
