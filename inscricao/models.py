@@ -107,7 +107,7 @@ class Candidato(Model):
 class Documento(Model):
 
     titulo = CharField('Título', max_length=50)
-    arquivo = FileField('Arquivo', upload_to="media/%Y/%m/%d/")
+    arquivo = FileField('Arquivo', upload_to="inscricao/media/%Y/%m/%d/")
 
     def __str__(self):
         return self.titulo

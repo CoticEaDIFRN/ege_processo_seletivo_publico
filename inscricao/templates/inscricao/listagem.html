@@ -13,7 +13,23 @@
 			<ul>
 				{% for candidato in inscricao %}
 					<li>
-						<a>{{ candidato.nome }}</a> / {{ candidato.email }}
+						<a>{{ candidato.nome_civil }}</a> / {{ candidato.email }} /
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>Nenhum candidato encontrado</p>
+		{% endif %}
+
+		<div class="panel-heading">
+			<strong>Todos os Documentos</strong>
+		</div>
+
+		{% if documento %}
+			<ul>
+				{% for doc in documento %}
+					<li>
+						<a>{{ doc.titulo }}</a>
 					</li>
 				{% endfor %}
 			</ul>

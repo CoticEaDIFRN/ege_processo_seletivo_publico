@@ -1,7 +1,6 @@
 from django import forms
 from .models import Usuario
 
-
 class RegistrarInscricaoForm(forms.Form):
 
     def __init__(self,  *args, **kwargs):
@@ -22,6 +21,23 @@ class RegistrarInscricaoForm(forms.Form):
         errors.append(message)
         self.sem_erro = False
 
+
+class RegistrarDocumentoForm(forms.Form):
+
+    def __init__(self,  *args, **kwargs):
+        super(RegistrarDocumentoForm, self).__init__(*args, **kwargs)
+        self.sem_erro = True
+
+    def is_valid(self):
+        if not super(RegistrarDocumentoForm, self).is_valid():
+            self.adiciona_erro('Por favor, verifique os dados informados')
+
+        return self.sem_erro
+
+    def adiciona_erro(self, message):
+        errors = self._errors.setdefault(forms.forms.NON_FIELD_ERRORS, forms.utils.ErrorList())
+        errors.append(message)
+        self.sem_erro = False
 
 
 
@@ -48,4 +64,3 @@ class RegistrarInscricaoForm(forms.Form):
 #     class Meta:
 #         model = Inscricao
 #         fields = '__all__'
-

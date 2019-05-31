@@ -51,7 +51,7 @@ class Logar(View):
         form = RegistrarLoginForm(request.POST)
 
         if form.is_valid():
-             return redirect('index')
+             return redirect('home')
         # else:
         #      return HttpResponse('Login inválido')
 
@@ -73,4 +73,7 @@ class Logar(View):
     #             else:
     #                 return HttpResponse('Login inválido')
 
+    def home(request):
+
+        return render(request, "cadastro/home.html")
 

@@ -1,7 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
-from .forms import RegistrarInscricaoForm
+from .forms import RegistrarInscricaoForm, RegistrarDocumentoForm
 from python_brfied.shortcuts.sync_http import get_json
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -46,13 +46,13 @@ class RegistrarInscricaoView(View):
                                                  pais=dados_form['pais'],
                                                  )
 
-            # documento = Documento.objects.create(titulo=dados_form['titulo'],
-            #                                      arquivo=request.POST['doc_pessoal'],
-            #                                   )
+            documento = Documento.objects.create(titulo=dados_form['titulo'],
+                                                 arquivo=request.POST['doc_pessoal'],
+                                              )
 
 
             inscricao.save()
-            # documento.save()
+            documento.save()
 
             # inscricao = Inscricao.objects.create(numero = 1,
             #                                      candidato = inscricao,
@@ -60,10 +60,10 @@ class RegistrarInscricaoView(View):
             #                                      )
             # inscricao.save()
 
-            return redirect('index')
+            return redirect('confirmar')
+
 
         return render(request, self.template_name, {'form': form})
-
 
 
     # def upload_file(request):
@@ -89,4 +89,39 @@ class RegistrarInscricaoView(View):
 
 
     def lista_inscricoes(request):
-        return render(request, 'inscricao/listagem.html', {'inscricao': Candidato.objects.all()})
+        return render(request, 'inscricao/listagem.html', {'inscricao': Candidato.objects.all(),'documento': Documento.objects.all()})
+
+
+# class RegistrarDocumentoView(View):
+#     template_name = 'inscricao/documentacao.html'
+#
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+    # def registrarDocumento(self, request):
+    #
+    #     render(request, 'inscricao/documentacao.html')
+    #
+    #     form = RegistrarDocumentoForm(request.POST)
+    #
+    #     if form.is_valid():
+    #         dados_form = form.data
+    #
+    #
+    #         documento = Documento.objects.create(titulo=dados_form['titulo'],
+    #                                              arquivo=request.POST['doc_pessoal'],
+    #                                           )
+    #
+    #
+    #         documento.save()
+    #
+    #         # inscricao = Inscricao.objects.create(numero = 1,
+    #         #                                      candidato = inscricao,
+    #         #                                      # documento = documento,
+    #         #                                      )
+    #         # inscricao.save()
+    #
+    #         return redirect('index')
+    #
+    #     return render(request, self.template_name, {'form': form})
+    #

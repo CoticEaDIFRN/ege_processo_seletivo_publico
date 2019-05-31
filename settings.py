@@ -18,6 +18,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 from python_brfied.env import env, env_as_bool, env_as_list
+import os
 
 # Development
 DEBUG = env_as_bool('DJANGO_DEBUG', True)
@@ -102,12 +103,18 @@ ROOT_URLCONF = env('DJANGO_ROOT_URLCONF', 'urls')
 STATIC_URL = env('DJANGO_STATIC_URL', "/%s%s" % (URL_PATH_PREFIX, 'static/'))
 STATIC_ROOT = "/static"
 
-# STATICFILES_DIR = [
-#     os.path.join(BASE_DIR, "static")
-# ]
 
-# MEDIA_URL = "/media/"
-# MEDIA_ROOT = "{}/media".format(BASE_DIR)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'inscricao/static'),
+# )
+
+MEDIA_ROOT = (
+  os.path.join(BASE_DIR, "media") #pasta media para abrigar os arquivos dos usuários
+)
+
+MEDIA_URL = '/media/' #endereço para acessar os arquivos
 
 
 # Localization
