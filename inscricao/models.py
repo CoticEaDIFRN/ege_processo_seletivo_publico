@@ -105,7 +105,7 @@ class Candidato(Model):
 
 
 class Documento(Model):
-
+    candidato = ForeignKey(Candidato, on_delete=models.CASCADE)
     titulo = CharField('Título', max_length=50)
     arquivo = FileField('Arquivo', upload_to="inscricao/media/%Y/%m/%d/")
 
@@ -113,11 +113,11 @@ class Documento(Model):
         return self.titulo
 
 
-class Inscricao(Model):
-    numero = CharField('Número', max_length=200)
-    candidato = OneToOneField(Candidato, on_delete=models.CASCADE)
-    documento = ForeignKey(Documento, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.numero
+# class Inscricao(Model):
+#     numero = CharField('Número', max_length=200)
+#     candidato = OneToOneField(Candidato, on_delete=models.CASCADE)
+#     documento = ForeignKey(Documento, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.numero
 

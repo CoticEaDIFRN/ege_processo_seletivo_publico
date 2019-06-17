@@ -1,162 +1,674 @@
-{% extends 'cadastro/base.html' %}
+{% extends 'inscricao/base.html' %}
 
 
 {% block body %}
 
 
 
-<form class="form-signin" role="form" action="{% url 'registrar_inscricao' %}" method="post">
+<div id="app">
+  <v-app id="inspire">
+    <v-tabs
+      centered
+      color="cyan"
+      dark
+      icons-and-text>
 
-    {% csrf_token %}
+          <v-tabs-slider color="yellow"></v-tabs-slider>
 
-    <h3 class="form-signin-heading">Informações pessoais</h3>
-
-
-
-    <input type="text" id="id_cpf" name="cpf" class="form-control"
-        placeholder="CPF *" required >
-    <p><p/>
-
-    <input type="text" id="id_nome_civil" name="nome_civil" class="form-control"
-        placeholder="Nome civil *" required >
-    <p><p/>
-
-     <input type="text" id="id_nome_social" name="nome_social" class="form-control"
-        placeholder="Nome social *" required >
-    <p><p/>
-
-    <input type="text" id="id_nome_apresentacao" name="nome_apresentacao" class="form-control"
-        placeholder="Nome de Apresentação *" required >
-    <p><p/>
-
-    <input type="text" id="id_nome_usual" name="nome_usual" class="form-control"
-        placeholder="Nome usual *" required >
-    <p><p/>
-
-     <input type="text" id="id_nome_mae" name="nome_mae" class="form-control"
-        placeholder="Nome da mãe *" required >
-    <p><p/>
-    <input type="text" id="id_nome_pai" name="nome_pai" class="form-control"
-        placeholder="Nome do pai *" required >
-    <p><p/>
-
-    <select id=cbSexo class="form-control" name="sexo" placeholder="Sexo *">
-        <option value="f" selected>Feminino</option>
-        <option value="m" >Masculino</option>
-        <option value="n" >Não informar</option>
-
-    </select>
-
-    <p><p/>
-
-     Data de Nascimento
-    <input type="date" id="id_data_nascimento" name="data_nascimento" class="form-control"
-        placeholder="Data de nascimento *" required >
-    <p><p/>
-    <input type="text" id="id_pais_nascimento" name="pais_nascimento" class="form-control"
-           placeholder=" País de nascimento *" required>
-    <p><p/>
-     <input type="text" id="id_estado_nascimento" name= "estado_nascimento" class="form-control"
-           placeholder=" Estado de nascimento *" required>
-    <p><p/>
-     <input type="text" id="id_cidade_nascimento" name= "cidade_nascimento" class="form-control"
-           placeholder=" Cidade de nascimento *" required>
-
-    <input type="text" id="id_rg" name="rg" class="form-control"
-        placeholder="Número do RG *" required >
-    <p><p/>
-     Data de Emissão
-    <input type="date" id="id_data_emissao" name="data_emissao" class="form-control"
-        placeholder="Data de emissao *" required >
-    <p><p/>
-
-    <input type="text" id="id_orgao_rg" name="orgao_rg" class="form-control"
-        placeholder="Orgão de RG *" required >
-
-    <p><p/>
-
-    <input type="text" id="id_estado_emissao" name="estado_emissao" class="form-control"
-        placeholder="UF do RG *" required >
-    <p><p/>
-
-    <input type="text" id="id_email" name="email" class="form-control"
-        placeholder="E-mail *" required >
-    <p><p/>
-
-    <input type="text" id="id_telefone" name="telefone" class="form-control phone-mask"
-           placeholder="Telefone *">
-
-    <p><p/>
+          <v-tab href="#tab-1">
+            Processo seletivo
+            <v-icon>phone</v-icon>
 
 
-    <h3 class="form-signin-heading">Informações de endereço</h3>
+          </v-tab>
+
+          <v-tab href="#tab-2">
+            Informações pessoais
+            <v-icon>favorite</v-icon>
 
 
-    <p><p/>
-    <input type="text" id="id_cep" name="cep" class="form-control"
-           placeholder=" CEP *">
+          </v-tab>
 
-    <p><p/>
-    <input type="text" id="id_endereco" name="endereco" class="form-control"
-           placeholder=" Endereço *">
+          <v-tab href="#tab-3">
+            Documentação
+            <v-icon>account_box</v-icon>
 
-    <p><p/>
-    <input type="text" id="id_complemento" name="complemento" class="form-control"
-           placeholder=" Complemento ">
+          </v-tab>
 
-    <p><p/>
-    <input type="text" id="id_cidade" name="cidade" class="form-control"
-           placeholder=" Cidade *">
+          <v-tab href="#tab-4">
+            Confirmação
+            <v-icon>account_box</v-icon>
 
-     <p><p/>
-    <input type="text" id="id_estado" name="estado" class="form-control"
-           placeholder=" Estado ">
+          </v-tab>
 
-    <p><p/>
-    <input type="text" id="id_pais" name="pais" class="form-control"
-           placeholder=" País *">
+          <v-tab-item :key=1
+              :value="'tab-' + 1">
+              <v-card value="tab-1">
+                <v-card-text >
+                    11111
+                </v-card-text>
 
-    <p><p/>
+              </v-card>
+
+          </v-tab-item>
+
+        <v-tab-item :key=2
+              :value="'tab-' + 2">
+              <v-card value="tab-2">
+                <v-card-text >
+                     <form class="form-signin" role="form" action="{% url 'registrar_inscricao' %}" method="post">
+
+                        {% csrf_token %}
 
 
-    <h3 class="form-signin-heading">Documentação</h3>
+                        <h3 class="form-signin-heading">Informações pessoais</h3>
 
 
 
-    <p><p/>
-    <label for="id_doc_pessoal"> Documentação pessoal :</label>
+                        <input type="text" id="id_cpf" name="cpf" class="form-control"
+                            placeholder="CPF *" required >
+                        <p>
 
-    <input type="text" id="id_titulo" name="titulo" class="form-control"
-           placeholder=" Título *">
-    <p><p/>
-    <input type="file" id="id_doc_pessoal" name="doc_pessoal" class="custom-file-input" accept="png, jpeg, *, pdf">
+                        <input type="text" id="id_nome_civil" name="nome_civil" class="form-control"
+                            placeholder="Nome civil *" required >
+                        <p>
 
-    <p><p/>
-     <label for="id_doc_titulo"> Documentação de título :</label>
-    <input type="file" id="id_doc_titulo" name="doc_titulo" class="custom-file-input" accept="png, jpeg, *, pdf">
+                         <input type="text" id="id_nome_social" name="nome_social" class="form-control"
+                            placeholder="Nome social *" required >
+                        <p>
 
-    <p><p/>
-    <label for="id_doc_escolar"> Documentação escolar :</label>
-    <input type="file" id="id_doc_escolar" name="doc_escolar" class="custom-file-input" accept="png, jpeg, *, pdf">
-    <hr/>
+                        <input type="text" id="id_nome_apresentacao" name="nome_apresentacao" class="form-control"
+                            placeholder="Nome de Apresentação *" required >
+                        <p>
+
+                        <input type="text" id="id_nome_usual" name="nome_usual" class="form-control"
+                            placeholder="Nome usual *" required >
+                        <p>
+
+                         <input type="text" id="id_nome_mae" name="nome_mae" class="form-control"
+                            placeholder="Nome da mãe *" required >
+                        <p>
+                        <input type="text" id="id_nome_pai" name="nome_pai" class="form-control"
+                            placeholder="Nome do pai *" required >
+                        <p>
+
+                        <select id=cbSexo class="form-control" name="sexo" placeholder="Sexo *">
+                            <option value="f" selected>Feminino</option>
+                            <option value="m" >Masculino</option>
+                            <option value="n" >Não informar</option>
+
+                        </select>
+
+                        <p>
+
+                         Data de Nascimento
+                        <input type="date" id="id_data_nascimento" name="data_nascimento" class="form-control"
+                            placeholder="Data de nascimento *" required >
+                        <p>
+                        <input type="text" id="id_pais_nascimento" name="pais_nascimento" class="form-control"
+                               placeholder=" País de nascimento *" required>
+                        <p>
+                         <input type="text" id="id_estado_nascimento" name= "estado_nascimento" class="form-control"
+                               placeholder=" Estado de nascimento *" required>
+                        <p>
+                         <input type="text" id="id_cidade_nascimento" name= "cidade_nascimento" class="form-control"
+                               placeholder=" Cidade de nascimento *" required>
+                        <p>
+                        <input type="text" id="id_rg" name="rg" class="form-control"
+                            placeholder="Número do RG *" required >
+                        <p>
+                         Data de Emissão
+                        <input type="date" id="id_data_emissao" name="data_emissao" class="form-control"
+                            placeholder="Data de emissao *" required >
+                        <p>
+
+                        <input type="text" id="id_orgao_rg" name="orgao_rg" class="form-control"
+                            placeholder="Orgão de RG *" required >
+
+                        <p>
+
+                        <input type="text" id="id_estado_emissao" name="estado_emissao" class="form-control"
+                            placeholder="UF do RG *" required >
+                        <p>
+
+                        <input type="text" id="id_email" name="email" class="form-control"
+                            placeholder="E-mail *" required >
+                        <p>
+
+                        <input type="text" id="id_telefone" name="telefone" class="form-control phone-mask"
+                               placeholder="Telefone *">
+
+                        <p>
+
+
+                        <h3 class="form-signin-heading">Informações de endereço</h3>
+
+
+                        <p>
+                        <input type="text" id="id_cep" name="cep" class="form-control"
+                               placeholder=" CEP *">
+
+                        <p>
+                        <input type="text" id="id_endereco" name="endereco" class="form-control"
+                               placeholder=" Endereço *">
+
+                        <p>
+                        <input type="text" id="id_complemento" name="complemento" class="form-control"
+                               placeholder=" Complemento ">
+
+                        <p>
+                        <input type="text" id="id_cidade" name="cidade" class="form-control"
+                               placeholder=" Cidade *">
+
+                         <p>
+                        <input type="text" id="id_estado" name="estado" class="form-control"
+                               placeholder=" Estado ">
+
+                        <p>
+                        <input type="text" id="id_pais" name="pais" class="form-control"
+                               placeholder=" País *">
+
+                        <p>
 
 
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-        Registrar
-    </button>
+                    </form>
+
+                </v-card-text>
+
+              </v-card>
+
+          </v-tab-item>
+
+        <v-tab-item :key=3
+              :value="'tab-' + 3">
+              <v-card value="tab-3">
+                <v-card-text >
+                    <form class="form-signin" role="form1" action="{% url 'registrar_inscricao' %}" method="post">
+                                                {% csrf_token %}
+
+                        <h3 class="form-signin-heading">Documentação</h3>
 
 
 
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                &times;
-            </button>
-            {{form.non_field_errors}}
-        </div>
-    {% endif %}
+                        <p>
+                        <label for="id_doc_pessoal"> Documentação pessoal :</label>
 
-</form>
+                        <input type="file" id="id_doc_pessoal" name="doc_pessoal" class="custom-file-input" accept="png, jpeg, *, pdf">
+
+                        <p>
+                         <label for="id_doc_titulo"> Documentação de título :</label>
+                        <input type="file" id="id_doc_titulo" name="doc_titulo" class="custom-file-input" accept="png, jpeg, *, pdf">
+
+                        <p>
+                        <label for="id_doc_escolar"> Documentação escolar :</label>
+                        <input type="file" id="id_doc_escolar" name="doc_escolar" class="custom-file-input" accept="png, jpeg, *, pdf">
+                        <hr/>
+
+
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+                            Registrar
+                        </button>
+
+
+
+                        {% if form.errors or form1.error%}
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    &times;
+                                </button>
+                                {{form.non_field_errors}}
+                                {{form1.non_field_errors}}
+                            </div>
+                        {% endif %}
+                    </form>>
+                </v-card-text>
+
+              </v-card>
+
+          </v-tab-item>
+
+        <v-tab-item :key=4
+              :value="'tab-' + 4">
+              <v-card value="tab-4">
+                <v-card-text >
+                    44444
+                </v-card-text>
+
+              </v-card>
+
+          </v-tab-item>
+
+
+    </v-tabs>
+
+    <div class="text-xs-center mt-3">
+      <v-btn @click="prev">prev tab</v-btn>
+      <v-btn @click="next">next tab</v-btn>
+    </div>
+
+  </v-app>
+</div>
+
+
+
+<!--<div id="app">-->
+<!--  <v-app id="inspire">-->
+<!--    <v-tabs-->
+<!--      centered-->
+<!--      color="cyan"-->
+<!--      dark-->
+<!--      icons-and-text>-->
+
+<!--          <v-tabs-slider color="yellow"></v-tabs-slider>-->
+
+<!--          <v-tab href="#tab-1">-->
+<!--            Processo seletivo-->
+<!--            <v-icon>phone</v-icon>-->
+<!--          </v-tab>-->
+
+<!--          <v-tab href="#tab-2">-->
+<!--            Informações pessoais-->
+<!--            <v-icon>favorite</v-icon>-->
+
+
+<!--          </v-tab>-->
+
+<!--          <v-tab href="#tab-3">-->
+<!--            Documentação-->
+<!--            <v-icon>account_box</v-icon>-->
+
+<!--          </v-tab>-->
+
+<!--          <v-tab href="#tab-4">-->
+<!--            Confirmação-->
+<!--            <v-icon>account_box</v-icon>-->
+
+<!--          </v-tab>-->
+
+<!--           <v-tab-item-->
+<!--              v-for="i in 4"-->
+<!--              :key="i"-->
+<!--              :value="'tab-' + i">-->
+<!--              <v-card value="tab-1">-->
+<!--                <v-card-text>-->
+
+
+
+
+<!--                    <form class="form-signin" role="form" action="{% url 'registrar_inscricao' %}" method="post">-->
+
+<!--                        {% csrf_token %}-->
+
+
+
+<!--                        <h3 class="form-signin-heading">Informações pessoais</h3>-->
+
+
+
+<!--                        <input type="text" id="id_cpf" name="cpf" class="form-control"-->
+<!--                            placeholder="CPF *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_nome_civil" name="nome_civil" class="form-control"-->
+<!--                            placeholder="Nome civil *" required >-->
+<!--                        <p>-->
+
+<!--                         <input type="text" id="id_nome_social" name="nome_social" class="form-control"-->
+<!--                            placeholder="Nome social *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_nome_apresentacao" name="nome_apresentacao" class="form-control"-->
+<!--                            placeholder="Nome de Apresentação *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_nome_usual" name="nome_usual" class="form-control"-->
+<!--                            placeholder="Nome usual *" required >-->
+<!--                        <p>-->
+
+<!--                         <input type="text" id="id_nome_mae" name="nome_mae" class="form-control"-->
+<!--                            placeholder="Nome da mãe *" required >-->
+<!--                        <p>-->
+<!--                        <input type="text" id="id_nome_pai" name="nome_pai" class="form-control"-->
+<!--                            placeholder="Nome do pai *" required >-->
+<!--                        <p>-->
+
+<!--                        <select id=cbSexo class="form-control" name="sexo" placeholder="Sexo *">-->
+<!--                            <option value="f" selected>Feminino</option>-->
+<!--                            <option value="m" >Masculino</option>-->
+<!--                            <option value="n" >Não informar</option>-->
+
+<!--                        </select>-->
+
+<!--                        <p>-->
+
+<!--                         Data de Nascimento-->
+<!--                        <input type="date" id="id_data_nascimento" name="data_nascimento" class="form-control"-->
+<!--                            placeholder="Data de nascimento *" required >-->
+<!--                        <p>-->
+<!--                        <input type="text" id="id_pais_nascimento" name="pais_nascimento" class="form-control"-->
+<!--                               placeholder=" País de nascimento *" required>-->
+<!--                        <p>-->
+<!--                         <input type="text" id="id_estado_nascimento" name= "estado_nascimento" class="form-control"-->
+<!--                               placeholder=" Estado de nascimento *" required>-->
+<!--                        <p>-->
+<!--                         <input type="text" id="id_cidade_nascimento" name= "cidade_nascimento" class="form-control"-->
+<!--                               placeholder=" Cidade de nascimento *" required>-->
+<!--                        <p>-->
+<!--                        <input type="text" id="id_rg" name="rg" class="form-control"-->
+<!--                            placeholder="Número do RG *" required >-->
+<!--                        <p>-->
+<!--                         Data de Emissão-->
+<!--                        <input type="date" id="id_data_emissao" name="data_emissao" class="form-control"-->
+<!--                            placeholder="Data de emissao *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_orgao_rg" name="orgao_rg" class="form-control"-->
+<!--                            placeholder="Orgão de RG *" required >-->
+
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_estado_emissao" name="estado_emissao" class="form-control"-->
+<!--                            placeholder="UF do RG *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_email" name="email" class="form-control"-->
+<!--                            placeholder="E-mail *" required >-->
+<!--                        <p>-->
+
+<!--                        <input type="text" id="id_telefone" name="telefone" class="form-control phone-mask"-->
+<!--                               placeholder="Telefone *">-->
+
+<!--                        <p>-->
+
+
+<!--                        <h3 class="form-signin-heading">Informações de endereço</h3>-->
+
+
+<!--                        <p>-->
+<!--                        <input type="text" id="id_cep" name="cep" class="form-control"-->
+<!--                               placeholder=" CEP *">-->
+
+<!--                        <p>-->
+<!--                        <input type="text" id="id_endereco" name="endereco" class="form-control"-->
+<!--                               placeholder=" Endereço *">-->
+
+<!--                        <p>-->
+<!--                        <input type="text" id="id_complemento" name="complemento" class="form-control"-->
+<!--                               placeholder=" Complemento ">-->
+
+<!--                        <p>-->
+<!--                        <input type="text" id="id_cidade" name="cidade" class="form-control"-->
+<!--                               placeholder=" Cidade *">-->
+
+<!--                         <p>-->
+<!--                        <input type="text" id="id_estado" name="estado" class="form-control"-->
+<!--                               placeholder=" Estado ">-->
+
+<!--                        <p>-->
+<!--                        <input type="text" id="id_pais" name="pais" class="form-control"-->
+<!--                               placeholder=" País *">-->
+
+<!--                        <p>-->
+
+
+<!--                        <h3 class="form-signin-heading">Documentação</h3>-->
+
+
+
+<!--                        <p>-->
+<!--                        <label for="id_doc_pessoal"> Documentação pessoal :</label>-->
+
+<!--                        <input type="file" id="id_doc_pessoal" name="doc_pessoal" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+
+<!--                        <p>-->
+<!--                         <label for="id_doc_titulo"> Documentação de título :</label>-->
+<!--                        <input type="file" id="id_doc_titulo" name="doc_titulo" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+
+<!--                        <p>-->
+<!--                        <label for="id_doc_escolar"> Documentação escolar :</label>-->
+<!--                        <input type="file" id="id_doc_escolar" name="doc_escolar" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+<!--                        <hr/>-->
+
+
+
+<!--                        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">-->
+<!--                            Registrar-->
+<!--                        </button>-->
+
+
+
+<!--                        {% if form.errors %}-->
+<!--                            <div class="alert alert-danger">-->
+<!--                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">-->
+<!--                                    &times;-->
+<!--                                </button>-->
+<!--                                {{form.non_field_errors}}-->
+<!--                            </div>-->
+<!--                        {% endif %}-->
+
+<!--                    </form>-->
+
+
+
+<!--                </v-card-text>-->
+<!--              </v-card>-->
+<!--           </v-tab-item>-->
+
+
+
+<!--    </v-tabs>-->
+<!--  </v-app>-->
+<!--</div>-->
+
 
 {% endblock %}
+
+
+
+
+
+{% block javascript %}
+
+
+
+<script>
+  new Vue({
+    el: "#app",
+    data: () => ({
+      items: [
+        'tab-1', 'tab-2', 'tab-3', 'tab-4'
+      ],
+
+    }),
+
+    methods: {
+      addItem (item) {
+        const removed = this.items.splice(0, 1)
+        this.items.push(
+          ...this.more.splice(this.more.indexOf(item), 1)
+        )
+          this.more.push(...removed)
+        this.$nextTick(() => { this.currentItem = 'tab-' + item })
+      },
+      next () {
+        const active = parseInt(this.active);
+        this.active = (active < this.items.length - 1 ? active + 1 : 0)
+      },
+      prev () {
+        const active = parseInt(this.active);
+        this.active = (active-1)
+      },
+      submit () {
+        const active = parseInt(this.active);
+        this.active = listagem(request)
+      }
+    }
+  })
+</script>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+<!--<form class="form-signin" role="form" action="{% url 'registrar_inscricao' %}" method="post">-->
+
+<!--	{% csrf_token %}-->
+
+
+
+<!--    <h3 class="form-signin-heading">Informações pessoais</h3>-->
+
+
+
+<!--    <input type="text" id="id_cpf" name="cpf" class="form-control"-->
+<!--        placeholder="CPF *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_nome_civil" name="nome_civil" class="form-control"-->
+<!--        placeholder="Nome civil *" required >-->
+<!--    <p><p/>-->
+
+<!--     <input type="text" id="id_nome_social" name="nome_social" class="form-control"-->
+<!--        placeholder="Nome social *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_nome_apresentacao" name="nome_apresentacao" class="form-control"-->
+<!--        placeholder="Nome de Apresentação *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_nome_usual" name="nome_usual" class="form-control"-->
+<!--        placeholder="Nome usual *" required >-->
+<!--    <p><p/>-->
+
+<!--     <input type="text" id="id_nome_mae" name="nome_mae" class="form-control"-->
+<!--        placeholder="Nome da mãe *" required >-->
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_nome_pai" name="nome_pai" class="form-control"-->
+<!--        placeholder="Nome do pai *" required >-->
+<!--    <p><p/>-->
+
+<!--    <select id=cbSexo class="form-control" name="sexo" placeholder="Sexo *">-->
+<!--        <option value="f" selected>Feminino</option>-->
+<!--        <option value="m" >Masculino</option>-->
+<!--        <option value="n" >Não informar</option>-->
+
+<!--    </select>-->
+
+<!--    <p><p/>-->
+
+<!--     Data de Nascimento-->
+<!--    <input type="date" id="id_data_nascimento" name="data_nascimento" class="form-control"-->
+<!--        placeholder="Data de nascimento *" required >-->
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_pais_nascimento" name="pais_nascimento" class="form-control"-->
+<!--           placeholder=" País de nascimento *" required>-->
+<!--    <p><p/>-->
+<!--     <input type="text" id="id_estado_nascimento" name= "estado_nascimento" class="form-control"-->
+<!--           placeholder=" Estado de nascimento *" required>-->
+<!--    <p><p/>-->
+<!--     <input type="text" id="id_cidade_nascimento" name= "cidade_nascimento" class="form-control"-->
+<!--           placeholder=" Cidade de nascimento *" required>-->
+
+<!--    <input type="text" id="id_rg" name="rg" class="form-control"-->
+<!--        placeholder="Número do RG *" required >-->
+<!--    <p><p/>-->
+<!--     Data de Emissão-->
+<!--    <input type="date" id="id_data_emissao" name="data_emissao" class="form-control"-->
+<!--        placeholder="Data de emissao *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_orgao_rg" name="orgao_rg" class="form-control"-->
+<!--        placeholder="Orgão de RG *" required >-->
+
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_estado_emissao" name="estado_emissao" class="form-control"-->
+<!--        placeholder="UF do RG *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_email" name="email" class="form-control"-->
+<!--        placeholder="E-mail *" required >-->
+<!--    <p><p/>-->
+
+<!--    <input type="text" id="id_telefone" name="telefone" class="form-control phone-mask"-->
+<!--           placeholder="Telefone *">-->
+
+<!--    <p><p/>-->
+
+
+<!--    <h3 class="form-signin-heading">Informações de endereço</h3>-->
+
+
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_cep" name="cep" class="form-control"-->
+<!--           placeholder=" CEP *">-->
+
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_endereco" name="endereco" class="form-control"-->
+<!--           placeholder=" Endereço *">-->
+
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_complemento" name="complemento" class="form-control"-->
+<!--           placeholder=" Complemento ">-->
+
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_cidade" name="cidade" class="form-control"-->
+<!--           placeholder=" Cidade *">-->
+
+<!--     <p><p/>-->
+<!--    <input type="text" id="id_estado" name="estado" class="form-control"-->
+<!--           placeholder=" Estado ">-->
+
+<!--    <p><p/>-->
+<!--    <input type="text" id="id_pais" name="pais" class="form-control"-->
+<!--           placeholder=" País *">-->
+
+<!--    <p><p/>-->
+
+
+<!--    <h3 class="form-signin-heading">Documentação</h3>-->
+
+
+
+<!--    <p><p/>-->
+<!--    <label for="id_doc_pessoal"> Documentação pessoal :</label>-->
+
+<!--    <input type="file" id="id_doc_pessoal" name="doc_pessoal" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+
+<!--    <p><p/>-->
+<!--     <label for="id_doc_titulo"> Documentação de título :</label>-->
+<!--    <input type="file" id="id_doc_titulo" name="doc_titulo" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+
+<!--    <p><p/>-->
+<!--    <label for="id_doc_escolar"> Documentação escolar :</label>-->
+<!--    <input type="file" id="id_doc_escolar" name="doc_escolar" class="custom-file-input" accept="png, jpeg, *, pdf">-->
+<!--    <hr/>-->
+
+
+
+<!--    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">-->
+<!--        Registrar-->
+<!--    </button>-->
+
+
+
+<!--    {% if form.errors %}-->
+<!--        <div class="alert alert-danger">-->
+<!--            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">-->
+<!--                &times;-->
+<!--            </button>-->
+<!--            {{form.non_field_errors}}-->
+<!--        </div>-->
+<!--    {% endif %}-->
+
+<!--</form>-->

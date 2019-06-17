@@ -3,14 +3,44 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" type="text/css" href="{% static 'cadastro/styles/bootstrap.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'cadastro/styles/signin.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'inscricao/styles/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'inscricao/styles/signin.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'inscricao/styles/demo.css' %}">
+        <script href="{% static 'inscricao/scripts/vendor/bootstrap-min.js' %}"></script>
+        <script href="{% static 'inscricao/scripts/js/modernizr.js' %}"></script>
+        <script href="{% static 'inscricao/scripts/js/cbpFWTabs.js' %}"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+
     </head>
     <body>
         <div class="container">
             {% block body %}
+
+
+
             {% endblock %}
         </div>
-        <script href="{% static 'cadastro/scripts/vendor/bootstrap-min.js' %}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+        <script>
+            new Vue({
+
+                    el: '#app',
+                    data () {
+                      return {
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                      }
+                    }
+
+            })
+        </script>
+
     </body>
 </html>

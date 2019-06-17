@@ -5,7 +5,7 @@ from .forms import RegistrarInscricaoForm, RegistrarDocumentoForm
 from python_brfied.shortcuts.sync_http import get_json
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from .models import Candidato, Documento, Inscricao
+from .models import Candidato, Documento
 from cadastro.models import Usuario
 
 class RegistrarInscricaoView(View):
@@ -46,13 +46,26 @@ class RegistrarInscricaoView(View):
                                                  pais=dados_form['pais'],
                                                  )
 
-            documento = Documento.objects.create(titulo=dados_form['titulo'],
+        form1 = RegistrarDocumentoForm(request.POST)
+
+        if form1.is_valid():
+            dados_form1 = form1.data
+            documento_pessoal = Documento.objects.create(candidato = inscricao,
+                                                 titulo="documentação pessoal",
                                                  arquivo=request.POST['doc_pessoal'],
                                               )
+            documento_titulo = Documento.objects.create(candidato=inscricao,
+                                                         titulo="documentação de títulos",
+                                                         arquivo=request.POST['doc_titulo'],
+                                                         )
+            documento_escolar = Documento.objects.create(candidato=inscricao,
+                                                         titulo="documentação escolar",
+                                                         arquivo=request.POST['doc_escolar'],
+                                                         )
 
 
-            inscricao.save()
-            documento.save()
+            # inscricao.save()
+            # documento.save()
 
             # inscricao = Inscricao.objects.create(numero = 1,
             #                                      candidato = inscricao,
@@ -63,7 +76,7 @@ class RegistrarInscricaoView(View):
             return redirect('confirmar')
 
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'form1': form1})
 
 
     # def upload_file(request):
