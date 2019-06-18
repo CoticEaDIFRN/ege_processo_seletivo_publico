@@ -29,11 +29,11 @@
 
           </v-tab>
 
-          <v-tab href="#tab-3">
-            Documentação
-            <v-icon>account_box</v-icon>
+<!--          <v-tab href="#tab-3">-->
+<!--            Documentação-->
+<!--            <v-icon>account_box</v-icon>-->
 
-          </v-tab>
+<!--          </v-tab>-->
 
           <v-tab href="#tab-4">
             Confirmação
@@ -169,24 +169,6 @@
                                placeholder=" País *">
 
                         <p>
-
-
-
-                    </form>
-
-                </v-card-text>
-
-              </v-card>
-
-          </v-tab-item>
-
-        <v-tab-item :key=3
-              :value="'tab-' + 3">
-              <v-card value="tab-3">
-                <v-card-text >
-                    <form class="form-signin" role="form1" action="{% url 'registrar_inscricao' %}" method="post">
-                                                {% csrf_token %}
-
                         <h3 class="form-signin-heading">Documentação</h3>
 
 
@@ -213,21 +195,38 @@
 
 
 
-                        {% if form.errors or form1.error%}
+                        {% if form.errors %}
                             <div class="alert alert-danger">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                                     &times;
                                 </button>
                                 {{form.non_field_errors}}
-                                {{form1.non_field_errors}}
                             </div>
                         {% endif %}
-                    </form>>
+
+
+                    </form>
+
                 </v-card-text>
 
               </v-card>
 
           </v-tab-item>
+
+<!--        <v-tab-item :key=3-->
+<!--              :value="'tab-' + 3">-->
+<!--              <v-card value="tab-3">-->
+<!--                <v-card-text >-->
+<!--                    <form class="form-signin" role="form1" action="{% url 'registrar_inscricao' %}" method="post">-->
+<!--                                                {% csrf_token %}-->
+
+<!--                        -->
+<!--                    </form>>-->
+<!--                </v-card-text>-->
+
+<!--              </v-card>-->
+
+<!--          </v-tab-item>-->
 
         <v-tab-item :key=4
               :value="'tab-' + 4">
