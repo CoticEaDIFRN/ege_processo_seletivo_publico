@@ -64,45 +64,25 @@ class RegistrarInscricaoView(View):
                                                          )
 
 
-            # inscricao.save()
-            # documento.save()
-
-            # inscricao = Inscricao.objects.create(numero = 1,
-            #                                      candidato = inscricao,
-            #                                      # documento = documento,
-            #                                      )
-            # inscricao.save()
-
             return redirect('confirmar')
 
 
         return render(request, self.template_name, {'form': form})
 
 
-    # def upload_file(request):
-    #     if request.method == 'POST':
-    #         form = Documento(request.POST, request.FILES)
-    #         if form.is_valid():
-    #             request.handle_uploaded_file(request.FILES['file'])
-    #             return HttpResponseRedirect('/success/url/')
-    #     else:
-    #         form = Documento()
-    #
-    #     return render_to_response('upload.html', {'form': form})
 
-
-    # def handle_uploaded_file(f):
-    #     destination = open('file/name.txt', 'wb+')
-    #     for chunk in f.chunks():
-    #         destination.write(chunk)
-    #     destination.close()
 
     def confirmarInscricao(request):
-        return render(request, 'inscricao/telainicial.html')
+
+
+        return render(request, 'inscricao/confirmardados.html', {'inscricao': Candidato.objects.last(),'documento': Documento.objects.last()})
+
 
 
     def lista_inscricoes(request):
         return render(request, 'inscricao/listagem.html', {'inscricao': Candidato.objects.all(),'documento': Documento.objects.all()})
+
+
 
 
 # class RegistrarDocumentoView(View):

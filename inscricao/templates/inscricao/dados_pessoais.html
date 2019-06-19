@@ -45,7 +45,7 @@
               :value="'tab-' + 1">
               <v-card value="tab-1">
                 <v-card-text >
-                    11111
+                    Aqui vão aparecer os editais
                 </v-card-text>
 
               </v-card>
@@ -232,7 +232,51 @@
               :value="'tab-' + 4">
               <v-card value="tab-4">
                 <v-card-text >
-                    44444
+                    <form class="form-signin" role="form1" action="{% url 'confirmar' %}" method="post">
+                        <div class="col-lg-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong>Processo seletivo</strong>
+		</div>
+
+        <div class="panel-heading">
+			<strong>Dados informados</strong>
+		</div>
+                <br>
+                CPF: <a>{{ inscricao.usuario.cpf }}</a> <br>
+                Nome civil: <a>{{ inscricao.nome_civil }}</a> <br>
+                Nome social: <a>{{ inscricao.nome_social }}</a> <br>
+                Nome apresentação: <a>{{ inscricao.nome_apresentacao }}</a> <br>
+                Nome usual: <a>{{ inscricao.nome_usual }}</a> <br>
+                Nome da mãe: <a>{{ inscricao.nome_mae }}</a> <br>
+                Nome do pai: <a>{{ inscricao.nome_pai }}</a> <br>
+                sexo: <a>{{ inscricao.sexo }}</a> <br>
+                Data de nascimento: <a>{{ inscricao.data_nascimento }}</a> <br>
+                País de nascimento: <a>{{ inscricao.pais_nascimento }}</a> <br>
+                Estado de nascimento: <a>{{ inscricao.estado_nascimento }}</a> <br>
+                Cidade de nascimento: <a>{{ inscricao.cidade_nascimento }}</a> <br>
+                RG: <a>{{ inscricao.rg }}</a> <br>
+                Data de emissão: <a>{{ inscricao.data_emissao }}</a> <br>
+                Estado de emissão: <a>{{ inscricao.estado_emissao }}</a> <br>
+                Orgão do RG: <a>{{ inscricao.orgao_rg }}</a> <br>
+                e-mail: <a>{{ inscricao.email }}</a> <br>
+                telefone: <a>{{ inscricao.telefone }}</a> <br>
+                CEP: <a>{{ inscricao.cep }}</a> <br>
+                endereço: <a>{{ inscricao.endereco }}</a> <br>
+                Cidade: <a>{{ inscricao.cidade }}</a> <br>
+                Estado: <a>{{ inscricao.estado }}</a> <br>
+                País: <a>{{ inscricao.pais }}</a> <br>
+            <p>
+            <button class="btn btn-lg btn-primary" type="submit" value="Login">
+                Confirmar
+            </button>
+
+
+    </div>
+</div>
+
+
+                    </form>
                 </v-card-text>
 
               </v-card>
