@@ -7,13 +7,20 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from .models import Candidato, Documento
 from cadastro.models import Usuario
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+
+# class RegistrarInscricaoView(LoginRequiredMixin, View):
 class RegistrarInscricaoView(View):
     template_name = 'inscricao/dados_pessoais.html'
 
+    # @method_decorator(login_required)
     def get(self, request):
         return render(request, self.template_name)
 
+    # @method_decorator(login_required)
     def post(self, request):
         form = RegistrarInscricaoForm(request.POST)
 
