@@ -2,7 +2,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from .forms import RegistrarInscricaoForm, RegistrarDocumentoForm
-from python_brfied.shortcuts.sync_http import get_json
+from sc4net import get_json
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from .models import Candidato, Documento
